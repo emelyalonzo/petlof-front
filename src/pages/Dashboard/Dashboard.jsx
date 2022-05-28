@@ -58,7 +58,7 @@ const Dashboard = () => {
       <div className="swiper-container">
         <div className="card-container">
 
-          {character.map((genderedUser) => (
+          {filteredGenderedUsers?.map((genderedUser) => (
             <TinderCard
               className="swipe"
               key={genderedUser.user_id}
