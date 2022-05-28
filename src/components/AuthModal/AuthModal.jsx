@@ -2,15 +2,16 @@ import React from 'react';
 import {useState} from "react";
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import { useCookies } from 'react-cookie';
+// import { useCookies } from 'react-cookie';
 
 const Authmodal = ({setShowModal, isSignUp }) => {
+
 
     const [email, setEmail] = useState(null);
     const [password, setPassword] = useState(null);
     const [confirmPassword, setConfirmPassword] = useState(null);
     const [error, setError] = useState(null);
-    const [cookies, setCookie, removeCookie] = useCookies(['user'])
+    // const [cookies, setCookie, removeCookie] = useCookies(['user'])
 
     let navigate = useNavigate();
 
@@ -21,20 +22,33 @@ const Authmodal = ({setShowModal, isSignUp }) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
+        
+
         try {
             if (isSignUp && ( password !== confirmPassword)) {
                 setError('Passwords does not match')
                 return
             }
             console.log(email, password)
+
+            //! EL HOOK RECIBE COMO VALORES DEL REQUEST EMAIL Y HASHED_PASSWORD (ASI ESTÁ EN LA DB Y EN EL BACKEND)
             const response = await axios.post(`http://localhost:3001/users/${isSignUp ? 'signup' : 'signin'}`, {"email" : email, "hashed_password" : password});
             console.log(response)
+            //TODO: LLAMAR A LA API DEL CUSTOM HOOK PARA REGISTER Y PARA LOGIN
+            // setCookie('AuthToken', response.data.token)
+            // setCookie('UserId', response.data.userId)
 
-            setCookie('AuthToken', response.data.token)
-            setCookie('UserId', response.data.userId)
-
-            if (response.status === 200 && isSignUp) navigate('/signup');
-            if (response.status === 200 && !isSignUp) navigate('/dashboard');
+            if (response.status === 200 && isSignUp) {
+                localStorage.setItem('AuthToken', response.data.token);
+                localStorage.setItem('UserId', response.data.userId);
+                navigate('/signup')
+                
+            };
+            if (response.status === 200 && !isSignUp) {
+                localStorage.setItem('AuthToken', response.data.token);
+                localStorage.setItem('UserId', response.data.userId);
+                navigate('/dashboard')
+            };
         } catch (error) {
             console.log(error);
         }

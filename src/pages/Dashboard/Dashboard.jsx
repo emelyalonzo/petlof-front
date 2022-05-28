@@ -1,47 +1,60 @@
 import { useState, useEffect } from "react";
-import { useCookies } from 'react-cookie';
 import TinderCard from "react-tinder-card";
 import ChatContainer from "../../components/ChatContainer/ChatContainer";
 import axios from "axios";
+import { useNavigate } from 'react-router-dom';
 
 const Dashboard = () => {
 
   const [user, setUser] = useState(null);
   const [genderedUsers, setGenderedUsers] = useState(null);
-  const [cookies, setCookie, removeCookie] = useCookies(['user']);
   const [lastDirection, setLastDirection] = useState();
-  
 
-  const userId = cookies.UserId;
+
+  const navigate = useNavigate();
 
   const getUser = async () => {
     try {
-      const response = await axios.get('http://localhost:3001/users', {
-        params: {userId}
+      const userId = localStorage.getItem("UserId");
+      console.log("userId", userId);
+      console.log("dentro de getUser en el useEffect")
+      const {data: {data}} = await axios.get('http://localhost:3001/users', {
+        params: {id: userId}
       })
-      setUser(response.data)
+      console.log("27",data)
+      setUser(data.user)
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  const getGenderedUser = async (user) => {
+    try {
+      const { data: {data} } = await axios.get('http://localhost:3001/gender', {
+        params: {gender_interest: user?.gender_interest}
+      })
+      console.log(data);
+      setGenderedUsers(data.users)
     } catch (err) {
       console.log(err);
     }
   }
   
-  const getGenderedUser = async () => {
-    try {
-      const response = await axios.get('http://localhost:3001/users/gendered-users', {
-        params: {gender: user?.gender_interest}
-      })
-      setGenderedUsers(response.data)
-    } catch (err) {
-      console.log(err);
-    }
-  }
+  useEffect(() => {
+    console.log("use effect de user antes de getUser")
+    getUser()
+    console.log("update user")
+  }, []);
+  console.log('user', user);
+
 
   useEffect(() => {
-    getUser()
-    getGenderedUser()
-  }, [user, getGenderedUser]);
+    if (user && !genderedUsers) {
+      getGenderedUser(user)
+    }
+  }, [user, genderedUsers]);
 
-  console.log('user', user);
+ 
 
   const swiped = (direction, nameToDelete) => {
     console.log('removing: ' + nameToDelete)
@@ -52,13 +65,29 @@ const Dashboard = () => {
     console.log(name + ' left the screen!')
   }
 
+  const logout = () => {
+    localStorage.clear()
+    setUser(null);
+    navigate("/")
+  };
+
+  if (!user || !genderedUsers) {
+    return "no existe el usuario"
+  }
   return (
     <div className="dashboard">
       <ChatContainer />
+      <button onClick={logout}>LOGOUT</button>
       <div className="swiper-container">
         <div className="card-container">
 
+<<<<<<< HEAD
           {filteredGenderedUsers?.map((genderedUser) => (
+=======
+
+
+          {genderedUsers.map((genderedUser) => (
+>>>>>>> 209cb48b931eddad90789fd1de427d9463608763
             <TinderCard
               className="swipe"
               key={genderedUser.user_id}
@@ -66,7 +95,7 @@ const Dashboard = () => {
               onCardLeftScreen={() => outOfFrame(genderedUser.first_name)}
             >
               <div
-                style={{ backgroundImage: "url(" + genderedUser.url + ")" }}
+                style={{ backgroundImage: "url(" + genderedUser.imageURL + ")" }}
                 className="card"
               >
                 <h3>{genderedUser.first_name}</h3>

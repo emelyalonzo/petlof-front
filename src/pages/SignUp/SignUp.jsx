@@ -1,18 +1,18 @@
 import Nav from "../../components/Nav/Nav";
 import React, { useState } from "react";
-import { useCookies } from 'react-cookie';
+// import { useCookies } from 'react-cookie';
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 
 //TODO: Poner el codigo en estilos o react para que el input de gender_identity y gender_interest se pinten como seleccionados en el signup
-
+//TODO: SOLUCIONAR PROBLEMA DE COOKIES URGENTE PARA PODER DAR USO DEL USERID EN EL FORMDATA
 
 
 const Signup = () => {
-  const [cookies, setCookie, removeCookie] = useCookies(['user'])
+  // const [cookies, setCookie, removeCookie] = useCookies(['user'])
   const [formData, setFormData] = useState({
-    user_id: cookies.UserId,
+    // user_id: cookies.UserId,
     first_name: "",
     dob_day: "",
     dob_month: "",
@@ -31,6 +31,7 @@ const Signup = () => {
   const handleSubmit = async (e) => {
     e.preventDefault()
     try {
+      //TODO: LLAMAR AL CUSTOM HOOK DE USEUSER.JSX PARA EDIT 
       const response = await axios.put('http://localhost:3001/users/edit', { formData })
       if (response.status === 200) navigate('/dashboard');
     } catch (err) {
