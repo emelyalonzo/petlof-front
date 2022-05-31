@@ -74,6 +74,8 @@ const Signup = () => {
                   className="signUpForm__input"
                   id="first_name"
                   type="text"
+                  min="0" 
+                  oninput="validity.valid||(value='');"
                   name="first_name"
                   placeholder="Nombre"
                   required={true}
@@ -90,6 +92,8 @@ const Signup = () => {
                   className="signUpForm__input"
                   id="dob_day"
                   type="number"
+                  min="0" 
+                  oninput="validity.valid||(value='');"
                   name="dob_day"
                   placeholder="dd"
                   required={true}
@@ -100,6 +104,8 @@ const Signup = () => {
                   className="signUpForm__input"
                   id="dob_month"
                   type="number"
+                  min="0" 
+                  oninput="validity.valid||(value='');"
                   name="dob_month"
                   placeholder="mm"
                   required={true}
@@ -110,6 +116,8 @@ const Signup = () => {
                   className="signUpForm__input"
                   id="dob_year"
                   type="number"
+                  min="0" 
+                  oninput="validity.valid||(value='');"
                   name="dob_year"
                   placeholder="aaaa"
                   required={true}
@@ -256,6 +264,7 @@ const Signup = () => {
                   type="url"
                   name="imageURL"
                   required={true}
+                  placeholder="Sube tu foto más gatuna"
                   onChange={handleChange}
                 />
               </div>
@@ -267,6 +276,7 @@ const Signup = () => {
                   src={formData.imageURL}
                   alt="profile pic preview"
                   className="signUpForm__photo-container"
+                  
                 />
               )}
             </div>

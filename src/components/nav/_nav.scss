@@ -8,7 +8,11 @@ nav.isotipo {
     align-items: center;
     padding: 0px 10px;
     column-gap: 20px;
-    
+
+    @media (max-width: 860px) {
+        flex-direction: column;
+    }
+
     img.logo-isotipo {
         width: 219.5px;
     }
@@ -29,21 +33,22 @@ nav.isotipo {
     }
     .container-nav {
         @include seudo-nav();
+        
         .containerNav--item {
-            :hover {
-                color:yellow;
+            &:hover {
+                color:#f24537;
             }
         }
-        
+
     }
     a.containerNav--item {
         @include base-button-nav--item ();
         &:hover {
-            color:yellow;
+
+            color:#f24537;
+
         }
     }
 }
-
-
 
 

@@ -19,6 +19,7 @@ const Dashboard = () => {
       const {data: {data}} = await axios.get('http://localhost:3001/users', {
         params: {id: userId}
       })
+      console.log("data.user",data.user)
       setUser(data.user)
     } catch (err) {
       console.log(err);
@@ -28,7 +29,7 @@ const Dashboard = () => {
   const getGenderedUser = async (user) => {
     try {
       const { data: {data} } = await axios.get('http://localhost:3001/gender', {
-        params: {gender_interest: user?.gender_interest}
+        params: {gender_identity: user?.gender_interest}
       })
       setGenderedUsers(data.users)
     } catch (err) {
@@ -46,12 +47,13 @@ const Dashboard = () => {
     }
   }, [user, genderedUsers]);
 
-  const updatedMatches = async (matchedUserId) => {
+  const updatedMatches = (matchedUserId) => {
     try {
-      await axios.put('http://localhost:3001/match/addmatch', {
+       axios.put('http://localhost:3001/match/addmatch', {
         userId, 
         matchedUserId
-      })
+      }).then(() => getUser())
+
     } catch (err) {
       console.log(err)
     }

@@ -1,12 +1,189 @@
-
-
 .titleAbout {
     background-color: white;
     width: 100%;
     height: 30vh;
+    position: absolute;
+    top: 0;
+    z-index: -9;
+    background: linear-gradient(to bottom,
+            rgba(0, 0, 0, 0.65) 0%,
+            rgba(0, 0, 0, 0) 100%    
+    ), url("./img/cat-bk-about.jpg");
     & h2 {
         font-size: 2rem;
-        color: darkgray;
+        font-style: initial;
+        color: $base-color-w;
+        padding: $none-pad;
+        margin: $none-margin;
 
+    }
+    p {
+        max-width: 800px;
+        text-align: center;
+        font-weight:$base-weight-normal;
+        font-family: $base-font;
+        color: $base-color-w;
+        padding: $none-pad;
+        margin: $none-margin;
+
+    }
+        @media (max-width: 860px) {
+            height: 46vh !important;
+            background-position: -536.3px 0px;
+            background-size: cover;
+        }
+        .titleAbout-container--items {
+            @media (max-width: 860px) {
+                height: 46vh!important;
+            }
+        }
+    .titleAbout-container--items {
+        @include flex-box-column();
+        height: 30vh;
+        font-style: initial;
+        font-weight:$base-weight-bold;
+        font-family: $base-font;
+    }
+}
+.aboutApp {
+    background: #ededed;
+    margin-top: 180px;
+    min-height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    @media (max-width: 567px) {
+        margin-top: 30vh;
+        padding: 2rem;
+    }
+    .titleAbout-container--items {
+        @include flex-box-column();
+        
+    }
+    .containerNav-item--about {
+        @include base-button();
+        margin-top: 1rem;
+        }
+    & h2 {
+        font-size: 2rem;
+        font-style: initial;
+        font-family: $base-font;
+        color: $base-color-w;
+        padding: $none-pad;
+        margin: $none-margin;
+        font-weight:$base-weight-bold;
+        color: $base-color;
+
+    }
+    p {
+        max-width: 800px;
+        text-align: center;
+        font-weight:$base-weight-normal;
+        font-family: $base-font;
+        font-family: $base-font;
+        padding: $none-pad;
+        margin: $none-margin;
+
+    }
+    img.catLogoSty {
+        max-width: 70px;
+        margin-top: -45px;
+    }
+}
+.aboutDevs {
+    background: #d3d3d3;
+    min-height: 620px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background: url(../../images/bkCat.jpg);
+    @media (max-width: 567px) {
+        padding: 2rem;
+    }
+    & h2 {
+        font-size: 2rem;
+        font-style: initial;
+        font-family: $base-font;
+        color: $base-color-w;
+        padding: $none-pad;
+        margin: $none-margin;
+        font-weight:$base-weight-bold;
+        color: $base-color;
+
+    }
+    p {
+        max-width: 800px;
+        text-align: center;
+        font-weight:$base-weight-normal;
+        font-family: $base-font;
+        font-family: $base-font;
+        padding: $none-pad;
+        margin: $none-margin;
+        margin-bottom: 35px;
+
+    }
+    .aboutDevs-container--items {
+        @include flex-box-column();
+
+    }
+    .aboutDev-container--imgs {
+        display: flex;
+        gap: 40px;
+        max-width: 1140px;
+        .dev-1 {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        & h2 {
+            font-size: 1.2rem;
+            margin-top: 1rem;
+        }
+        @media (max-width: 860px) {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0px 0px;
+            width: 100%;
+            flex-direction: column!important;
+        }
+    }
+    .catLogoSty {
+        max-width: 70px;
+    }
+    .imgUserDevs {
+        box-shadow: rgb(0 0 0 / 44%) 0px 5px 35px;
+        border-radius: 160px;
+        max-width: 280px;
+        cursor: pointer;
+        &:hover {
+            filter: initial;
+        }
+    }
+}
+.aboutFooter {
+    background: #ededed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 4px;
+    .titleFooter-container--items {
+        @include flex-box-column();
+        flex-direction: initial;
+        column-gap: 5px;
+    }
+    .imgUsercatlove {
+        width: 30px;
+    }
+    & h2 {
+        font-size: $base-font-S;
+        font-style: initial;
+        font-family: $base-font;
+        color: $base-color-w;
+        padding: $none-pad;
+        margin: $none-margin;
+        font-weight:$base-weight-bold;
+        color: $base-color;
     }
 }
