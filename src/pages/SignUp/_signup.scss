@@ -1,17 +1,126 @@
+.isotipo {
+}
 .signUp {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  @include flex-box-column();
+  h2 {
+    text-align: center;
+    color:$base-color-w;
+    font-size:2.7rem;
+    font-weight:$base-weight-bold;
+    font-family: $base-font;
+    font-style: initial!important;
+  }
+  .bk-signup {
+    background: url("./img/cat-signup.jpg");
+    width: 100%;
+    background-size: 870px;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    max-width: 870px;
+    min-height: 190px;
+    border-radius: 10px;
+    margin-top: 25px;
+    @media (max-width: 860px) {
+      background-position: left;
+      border-radius: 0px;
+  }
+  }
+  .signUpForm__multipleInput input {
+    width: 100%;
+  }
+  input[type=number] {
+    width: 33%!important;
+    margin: 3px;
+  }
+  .signUpForm__label {
+    @include base-input();
+    width: 33%;
+    margin: 5px 3px;
+    padding: 7px 10px;
+    &:hover {
+      background-color: #f2f2f2;
+      cursor: pointer;
+    }
+    &::placeholder  {
+      @include base-input();
+      text-align: center;
+    color:$base-color;
+    font-size:2.7rem;
+    font-weight:$base-weight-bold;
+    font-family: $base-font;
+    font-style: initial!important;
+    }
+
+  }
+  label {
+    color:$base-color;
+    font-size:$base-font-M;
+    font-weight:$base-weight-bold;
+    font-family: $base-font;
+    margin-bottom: 15px!important;
+  }
+  .btn-input {
+    @include base-button();
+    margin-top: 10px;
+  }
 }
 
-h2 {
-  text-align: center;
-}
 
 .signUpForm {
   display: flex;
   justify-content: center;
-
+  @media (max-width: 860px) {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+    width: 100%;
+}
+  h3.title-label {
+    padding: 0px;
+    margin: 0;
+    font-size: 15px;
+    margin-top: 15px;
+}
+.signUpForm__section {
+  flex-direction: column;
+  padding: 0px;
+  margin: 31px 70px;
+  text-align: start;
+  width: 92%;
+  min-width: 320px;
+  @media (max-width: 860px) {
+    margin: 21px 20px;
+}
+}
+.signUpForm__photo-container {
+  max-width: 100%;
+  display: block;
+  height: 43vh;
+  width: 320px;
+  object-fit: fill;
+  border-radius: 8px;
+  background: url("./img/img-upload.jpg");
+  box-shadow: rgb(100 100 111 / 7%) 0px 7px 29px 0px;
+}
+input#imageURL {
+  @include base-input();
+}
+h3.title-label.mvc {
+  margin-top: 0px;
+}
+h3.title-label.hty {
+  padding: 0px;
+  margin: 0;
+}
+input#about {
+  width: 100%;
+  min-height: 44px;
+  border-radius: 8px;
+}
   &__section {
     flex-direction: column;
     padding: 20px;
@@ -20,14 +129,21 @@ h2 {
   }
 
   &__input {
-    width: 239px;
-    padding: 15px 30px;
-    margin: 10px 0;
-    font-size: 15px;
-    border: solid 2px rgb(219, 219, 219);
-    border-radius: 10px;
-    margin-right: 10px;
-
+    @include base-input();
+    input#first_name {
+      max-width: 100%;
+      width: 100%;
+    }
+    .signUpForm__input {
+      width: 100%;
+  }
+    &::placeholder  {
+    color:$base-color;
+    font-weight:$base-weight-bold;
+    font-family: $base-font;
+    font-style: initial!important;
+    }
+    
     &--profile {
       width: 300px;
       padding: 15px 30px;
@@ -60,10 +176,7 @@ h2 {
 
 input[type="radio"] {
   display: none;
-}
-
-input[type="number"] {
-  width: 30px;
+  background-color: red;
 }
 
 input[type="submit"] {
@@ -77,4 +190,9 @@ input[type="submit"]:hover {
 input[type="submit"]:active {
   background-color: rgb(226, 115, 155);
 }
-// -webkit-appearance: none;
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+    }

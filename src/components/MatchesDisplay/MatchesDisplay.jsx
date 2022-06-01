@@ -13,6 +13,7 @@ const Matchesdisplay = ({ matches, setClickedUser }) => {
             const {data: {data}} = await axios.get('http://localhost:3001/match', {
                 params: {userIds: JSON.stringify(matchedUserIds)}
             })
+            console.log(data.foundUsers)
             setMatchedProfiles(data.foundUsers);
         } catch (err) {
             console.log(err)
@@ -22,12 +23,6 @@ const Matchesdisplay = ({ matches, setClickedUser }) => {
     useEffect(() => {
         getMatches()
     }, [matches]);
-
-    // const filteredMatchedProfiles = matchedProfiles?.filter(
-    //     (matchedProfile) => 
-    //         matchedProfile.matches.filter(
-    //             (profile) => 
-    //                 profile.user_id === userId).length > 0)
 
     return (
         <div className="matches-display">

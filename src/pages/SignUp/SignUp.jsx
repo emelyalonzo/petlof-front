@@ -1,12 +1,13 @@
-import Nav from "../../components/Nav/Nav";
-import React, { useState } from "react";
-import axios from "axios";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import Nav from "../../components/Nav/Nav";
 
 //TODO: Poner el codigo en estilos o react para que el input de gender_identity y gender_interest se pinten como seleccionados en el signup
 
 const Signup = () => {
   let localStorageUserId = localStorage.getItem("UserId");
+  let navigate = useNavigate();
 
   const [formData, setFormData] = useState({
     user_id: localStorageUserId,
@@ -21,8 +22,7 @@ const Signup = () => {
     matches: [],
   });
 
-  let navigate = useNavigate();
-
+// Second step of registration. Send the remaining data to the API.
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -31,9 +31,8 @@ const Signup = () => {
       });
       if (response.status === 200) {
         localStorage.removeItem("FirstStep");
-        navigate("/dashboard")
-        
-      };
+        navigate("/dashboard");
+      }
     } catch (err) {
       console.log(err);
     }
@@ -50,10 +49,6 @@ const Signup = () => {
     }));
   };
 
-  console.log(formData);
-
-  // if (!localStorageUserId) return "401";
-
   return (
     <>
       <Nav
@@ -63,19 +58,19 @@ const Signup = () => {
         showModal={false}
       />
       <div className="signUp">
+      <div className="bk-signup">
         <h2>CREATE ACCOUNT</h2>
-
+      </div>
         <form onSubmit={handleSubmit} className="signUpForm">
           <section className="signUpForm__section">
             <label htmlFor="first_name">
-              Name
+              <h3 className="title-label">Name</h3>
               <div className="signUpForm__multipleInput">
                 <input
                   className="signUpForm__input"
                   id="first_name"
                   type="text"
-                  min="0" 
-                  oninput="validity.valid||(value='');"
+                  min="0"
                   name="first_name"
                   placeholder="Nombre"
                   required={true}
@@ -86,14 +81,14 @@ const Signup = () => {
             </label>
 
             <label htmlFor="dob_day">
-              Date of birth
+            <h3 className="title-label">Date of birth</h3>
               <div className="signUpForm__multipleInput">
                 <input
                   className="signUpForm__input"
                   id="dob_day"
                   type="number"
-                  min="0" 
-                  oninput="validity.valid||(value='');"
+                  min="0"
+                  max="31"
                   name="dob_day"
                   placeholder="dd"
                   required={true}
@@ -104,8 +99,8 @@ const Signup = () => {
                   className="signUpForm__input"
                   id="dob_month"
                   type="number"
-                  min="0" 
-                  oninput="validity.valid||(value='');"
+                  min="0"
+                  max="12"
                   name="dob_month"
                   placeholder="mm"
                   required={true}
@@ -116,8 +111,8 @@ const Signup = () => {
                   className="signUpForm__input"
                   id="dob_year"
                   type="number"
-                  min="0" 
-                  oninput="validity.valid||(value='');"
+                  min="0"
+                  max="9999"
                   name="dob_year"
                   placeholder="aaaa"
                   required={true}
@@ -128,7 +123,7 @@ const Signup = () => {
             </label>
 
             <label htmlFor="gender_identity">
-              Gender
+            <h3 className="title-label">Gender</h3>
               <div className="signUpForm__multipleInput">
                 <label
                   htmlFor="man-gender_identity"
@@ -182,7 +177,7 @@ const Signup = () => {
             </label>
 
             <label htmlFor="show_me">
-              Gender interest
+            <h3 className="title-label mvc">Gender interest</h3>
               <div className="signUpForm__multipleInput">
                 <label
                   htmlFor="man-gender_interest"
@@ -236,7 +231,7 @@ const Signup = () => {
             </label>
 
             <label htmlFor="about">
-              About me
+            <h3 className="title-label hty">About me</h3>
               <div className="signUpForm__multipleInput">
                 <input
                   className="signUpForm__input"
@@ -250,8 +245,6 @@ const Signup = () => {
                 />
               </div>
             </label>
-
-            <input className="signUpForm__input" type="submit" value="Enviar" />
           </section>
 
           <section className="signUpForm__section">
@@ -276,11 +269,12 @@ const Signup = () => {
                   src={formData.imageURL}
                   alt="profile pic preview"
                   className="signUpForm__photo-container"
-                  
                 />
               )}
             </div>
+            <input className="signUpForm__input btn-input" type="submit" value="Enviar" />
           </section>
+          
         </form>
       </div>
     </>
