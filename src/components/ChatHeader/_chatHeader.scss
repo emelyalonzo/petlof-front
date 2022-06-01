@@ -2,10 +2,46 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-
-    background: linear-gradient(45deg, rgb(254, 48, 114), rgb(225, 89, 64));
+    background: linear-gradient(to bottom, #c62d1f 5%, #f24537 100%);
+    background-color: #c62d1f;
     height: 100px;
-
+    button.chatContainer__btn--option {
+        width: 48.8%;
+    }
+    .chatHeader__profile {
+        & h3 {
+        border-radius:$bor-40;
+        color:$base-color-w;
+        font-size: 1.4rem;
+        font-weight:$base-weight-bold;
+        font-family: $base-font;
+        }
+        .chatHeader__img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50px;
+            overflow: hidden;
+            margin: 10px;
+            border: 2px solid white;
+            box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+            cursor: pointer;
+        }
+    }
+    .log-out-icon {
+        width: 30px;
+        height: 30px;
+        background:url("./img/exit-btn.svg");
+        margin-right: 8px;
+    }
+    .img-container {
+        width: 60px;
+        height: 60px;
+        border-radius: 50px;
+        overflow: hidden;
+        margin: 10px;
+        border: 2px solid white;
+        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    }
     &__profile {
         display: flex;
         align-items: center;
