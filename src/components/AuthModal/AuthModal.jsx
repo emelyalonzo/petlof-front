@@ -6,6 +6,7 @@ import woolBall from '../../images/woolBall.svg';
 import closeicon from '../../images/closeIcon.svg';
 
 
+
 const Authmodal = ({setShowModal, isSignUp }) => {
 
     const [email, setEmail] = useState(null);
