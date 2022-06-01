@@ -6,7 +6,6 @@ import woolBall from '../../images/woolBall.svg';
 import closeicon from '../../images/closeIcon.svg';
 
 
-
 const Authmodal = ({setShowModal, isSignUp }) => {
 
     const [email, setEmail] = useState(null);
@@ -64,6 +63,7 @@ const Authmodal = ({setShowModal, isSignUp }) => {
     return (
         <div className="auth-modal">
             <div className="close-icon" onClick={handleClick}>
+
             <img className="closeicon" src={closeicon} alt="Close Icon"/>
             </div>
             <div className="container-title">

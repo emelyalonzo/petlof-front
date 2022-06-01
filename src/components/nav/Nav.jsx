@@ -1,5 +1,7 @@
+import React from "react";
 import { Link } from "react-router-dom";
 import whiteLogo from "../../images/petLove-Logo-full.svg";
+//TODO: importar diferentes logos para distinguir si el usuario ha hecho login o no
 import colorLogo from "../../images/petLove-Logo-full-black.svg";
 
 const Nav = ({
@@ -28,26 +30,33 @@ const Nav = ({
           alt="logo"
         />
       </div>
-
+      
       {isPage && (
         <div className="itemsMenu-container">
           <div className="container-nav">
-            <Link to="/" className="containerNav--item">
+            <Link to="/" 
+            className="containerNav--item">
               Home
             </Link>
-            <Link to="/about" className="containerNav--item">
+            <Link to="/about" 
+            className="containerNav--item">
               About
             </Link>
             {FirstStep && (
-              <Link to="/signup" className="containerNav--item">
+              <Link
+                to="/signup"
+                className="containerNav--item">
                 Sign Up
               </Link>
             )}
             {Dashboard && (
-              <Link to="/dashboard" className="containerNav--item">
+              <Link
+                to="/dashboard"
+                className="containerNav--item">              
                 Dashboard
               </Link>
             )}
+
           </div>
         </div>
       )}

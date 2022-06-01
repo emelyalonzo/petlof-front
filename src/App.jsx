@@ -11,20 +11,21 @@ import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 import DashboardPrivateRoute from "./components/PrivateRoute/DashboardPrivateRoute";
 
 const App = () => {
+
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route exact path="/" element={<PrivateRoute />}>
-          <Route path="/signup" element={<Signup />} />
+        <Route path="/" element={<Home/>}/>
+        <Route path="/about" element={<About/>}/>
+        <Route exact path='/' element={<PrivateRoute/>}> 
+          <Route path="/signup" element={<Signup/>}/> 
         </Route>
-        <Route exact path="/" element={<DashboardPrivateRoute />}>
-          <Route path="/dashboard" element={<Dashboard />} />
+        <Route exact path='/' element={<DashboardPrivateRoute/>}> 
+          <Route path="/dashboard" element={<Dashboard/>}/> 
         </Route>
-        <Route path="/about" element={<About />} />
       </Routes>
-    </Router>
+    </Router> 
   );
-};
+}
 
 export default App;

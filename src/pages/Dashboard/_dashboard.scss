@@ -1,18 +1,6 @@
 .dashboard {
     display: flex;
     justify-content: space-between;
-    .chatContainer-colum {
-        width: 25%;
-        min-width: 440px;
-    }
-    .swipe-colum {
-        width: 75%;
-        @include flex-box-column();
-        background: linear-gradient(to bottom,
-            rgba(0, 0, 0, 0.65) 0%,
-            rgba(0, 0, 0, 0) 100%    
-    ), url("./img/bk-pet-tinder.jpg");
-    }
 }
 
 .dashboard .swipe-container {
@@ -41,8 +29,7 @@
     border-radius: 30px;
     background-size: cover;
     background-position: center;
-    box-shadow: rgb(100 100 111 / 9%) 0px 7px 29px 0px;
-
+   
 }
 
 .card h3 {
